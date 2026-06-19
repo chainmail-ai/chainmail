@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- viewBox starts at x=-40 so the "REPOSITORY INPUT" label (ends at x=57, 17 chars wide)
+     has room on the left without clipping. All element positions are unchanged. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 0 820 380" width="820" height="380">
+  <rect x="-40" width="820" height="380" fill="#fafafa" rx="6"/>
+
+  <!-- INPUT BOX -->
+  <rect x="255" y="30" width="270" height="42" rx="5" fill="#e8f0fb" stroke="#4a7fd4" stroke-width="1.5"/>
+  <text x="390" y="48" font-size="11" font-family="Helvetica,Arial,sans-serif" fill="#1a4a8a"
+    text-anchor="middle" font-weight="bold">Repository URL / Package Lock</text>
+  <text x="390" y="63" font-size="9.5" font-family="Helvetica,Arial,sans-serif"
+    fill="#4a7fd4" text-anchor="middle">npm · PyPI · Maven · crates.io</text>
+
+  <!-- Arrow down to analysis -->
+  <defs>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#aaa"/>
+    </marker>
+  </defs>
+  <line x1="390" y1="72" x2="390" y2="96" stroke="#aaa" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ANALYSIS ENGINE BOX -->
+  <rect x="60" y="96" width="660" height="112" rx="6" fill="#fff" stroke="#ddd"
+    stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="390" y="114" font-size="9" font-family="Helvetica,Arial,sans-serif"
+    fill="#aaa" text-anchor="middle" font-weight="bold">CHAINMAIL ANALYSIS ENGINE</text>
+
+  <!-- 8 modules -->
+  
+    <g>
+      <rect x="64" y="122" width="72" height="42" rx="4"
+        fill="#f0f6ff"
+        stroke="#b8d0f0" stroke-width="1"/>
+      <text x="100" y="138" font-size="8" font-family="Helvetica,Arial,sans-serif"
+        fill="#1a4a8a" text-anchor="middle" font-weight="bold">SBOM Health</text>
+      <text x="100" y="152" font-size="7" font-family="Helvetica,Arial,sans-serif"
+        fill="#6888aa" text-anchor="middle">CycloneDX/SPDX</text>
+    </g>
+    <g>
+      <rect x="144" y="122" width="72" height="42" rx="4"
+        fill="#f0f6ff"
+        stroke="#b8d0f0" stroke-width="1"/>
+      <text x="180" y="138" font-size="8" font-family="Helvetica,Arial,sans-serif"
+        fill="#1a4a8a" text-anchor="middle" font-weight="bold">Readiness</text>
+      <text x="180" y="152" font-size="7" font-family="Helvetica,Arial,sans-serif"
+        fill="#6888aa" text-anchor="middle">2026 EO</text>
+    </g>
+    <g>
+      <rect x="224" y="122" width="72" height="42" rx="4"
+        fill="#f0f6ff"
+        stroke="#b8d0f0" stroke-width="1"/>
+      <text x="260" y="138" font-size="8" font-family="Helvetica,Arial,sans-serif"
+        fill="#1a4a8a" text-anchor="middle" font-weight="bold">Vuln Scanner</text>
+      <text x="260" y="152" font-size="7" font-family="Helvetica,Arial,sans-serif"
+        fill="#6888aa" text-anchor="middle">CVE/CVSS</text>
+    </g>
+    <g>
+      <rect x="304" y="122" width="72" height="42" rx="4"
+        fill="#f0f6ff"
+        stroke="#b8d0f0" stroke-width="1"/>
+      <text x="340" y="138" font-size="8" font-family="Helvetica,Arial,sans-serif"
+        fill="#1a4a8a" text-anchor="middle" font-weight="bold">License LCP</text>
+      <text x="340" y="152" font-size="7" font-family="Helvetica,Arial,sans-serif"
+        fill="#6888aa" text-anchor="middle">DAG model</text>
+    </g>
+    <g>
+      <rect x="384" y="122" width="72" height="42" rx="4"
+        fill="#f5f5ff"
+        stroke="#c8c8f0" stroke-width="1"/>
+      <text x="420" y="138" font-size="8" font-family="Helvetica,Arial,sans-serif"
+        fill="#1a4a8a" text-anchor="middle" font-weight="bold">Risk SCRS</text>
+      <text x="420" y="152" font-size="7" font-family="Helvetica,Arial,sans-serif"
+        fill="#6888aa" text-anchor="middle">5-dim A–F</text>
+    </g>
+    <g>
+      <rect x="464" y="122" width="72" height="42" rx="4"
+        fill="#f5f5ff"
+        stroke="#c8c8f0" stroke-width="1"/>
+      <text x="500" y="138" font-size="8" font-family="Helvetica,Arial,sans-serif"
+        fill="#1a4a8a" text-anchor="middle" font-weight="bold">VEX Gen</text>
+      <text x="500" y="152" font-size="7" font-family="Helvetica,Arial,sans-serif"
+        fill="#6888aa" text-anchor="middle">CSAF 2.0</text>
+    </g>
+    <g>
+      <rect x="544" y="122" width="72" height="42" rx="4"
+        fill="#f5f5ff"
+        stroke="#c8c8f0" stroke-width="1"/>
+      <text x="580" y="138" font-size="8" font-family="Helvetica,Arial,sans-serif"
+        fill="#1a4a8a" text-anchor="middle" font-weight="bold">Provenance</text>
+      <text x="580" y="152" font-size="7" font-family="Helvetica,Arial,sans-serif"
+        fill="#6888aa" text-anchor="middle">SLSA v1.0</text>
+    </g>
+    <g>
+      <rect x="624" y="122" width="72" height="42" rx="4"
+        fill="#f5f5ff"
+        stroke="#c8c8f0" stroke-width="1"/>
+      <text x="660" y="138" font-size="8" font-family="Helvetica,Arial,sans-serif"
+        fill="#1a4a8a" text-anchor="middle" font-weight="bold">SBOM Diff</text>
+      <text x="660" y="152" font-size="7" font-family="Helvetica,Arial,sans-serif"
+        fill="#6888aa" text-anchor="middle">Δ version</text>
+    </g>
+
+  <!-- PostgreSQL DB -->
+  <rect x="310" y="175" width="160" height="30" rx="4" fill="#e8f5e9" stroke="#81c784" stroke-width="1.5"/>
+  <text x="390" y="186" font-size="8.5" font-family="Helvetica,Arial,sans-serif"
+    fill="#2e7d32" text-anchor="middle" font-weight="bold">PostgreSQL Database</text>
+  <text x="390" y="198" font-size="7.5" font-family="Helvetica,Arial,sans-serif"
+    fill="#4caf50" text-anchor="middle">analyses · components · vulns · vex</text>
+
+  <!-- Arrow down to API -->
+  <line x1="390" y1="208" x2="390" y2="228" stroke="#aaa" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- API LAYER -->
+  <rect x="80" y="228" width="620" height="48" rx="5" fill="#fff8f0" stroke="#f0a040" stroke-width="1.5"/>
+  <text x="390" y="246" font-size="10" font-family="Helvetica,Arial,sans-serif"
+    fill="#a05000" text-anchor="middle" font-weight="bold">OpenAPI 3.1 REST API · Express.js + Zod Validation</text>
+  <text x="390" y="263" font-size="8" font-family="Helvetica,Arial,sans-serif"
+    fill="#c07820" text-anchor="middle">/analyses · /sbom · /vulnerabilities · /licenses · /license-tree · /risk · /vex · /provenance · /readiness · /diff</text>
+
+  <!-- Arrow down to client -->
+  <line x1="390" y1="276" x2="390" y2="308" stroke="#aaa" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Codegen annotation — sits right of the down-arrow, fully within the diagram boundary (x≤700) -->
+  <rect x="408" y="281" width="156" height="28" rx="4" fill="#f9f9f9" stroke="#ddd" stroke-width="1"/>
+  <text x="486" y="293" font-size="7.5" font-family="Helvetica,Arial,sans-serif" fill="#888" text-anchor="middle">Orval codegen</text>
+  <text x="486" y="304" font-size="7.5" font-family="Helvetica,Arial,sans-serif" fill="#888" text-anchor="middle">React Query hooks + Zod</text>
+  <!-- short dashed connector to the arrow -->
+  <line x1="408" y1="295" x2="396" y2="295" stroke="#ccc" stroke-width="1" stroke-dasharray="3 2"/>
+
+  <!-- CLIENT -->
+  <rect x="180" y="308" width="420" height="42" rx="5" fill="#f3e8ff" stroke="#9c5ed4" stroke-width="1.5"/>
+  <text x="390" y="326" font-size="10" font-family="Helvetica,Arial,sans-serif"
+    fill="#5b2d8a" text-anchor="middle" font-weight="bold">React 19 + Vite 7 Web Frontend</text>
+  <text x="390" y="341" font-size="8.5" font-family="Helvetica,Arial,sans-serif"
+    fill="#7c4aaa" text-anchor="middle">8 Tool Pages · Dashboard · Recharts · Custom SVG</text>
+
+  <!-- Layer labels — all right-aligned to x=57 so they end before the nearest box boundary -->
+  <text x="57" y="52"  font-size="9" font-family="Helvetica,Arial,sans-serif" fill="#999" font-weight="bold" text-anchor="end">REPOSITORY INPUT</text>
+  <text x="57" y="140" font-size="9" font-family="Helvetica,Arial,sans-serif" fill="#aaa" font-weight="bold" text-anchor="end">ANALYSIS</text>
+  <text x="57" y="250" font-size="9" font-family="Helvetica,Arial,sans-serif" fill="#999" font-weight="bold" text-anchor="end">API LAYER</text>
+  <text x="57" y="335" font-size="9" font-family="Helvetica,Arial,sans-serif" fill="#999" font-weight="bold" text-anchor="end">CLIENT</text>
+</svg>

@@ -1,0 +1,849 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: Chainmail – Unified open-source maintainer workbench API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: analyses
+    description: Repository analyses
+  - name: sbom
+    description: SBOM Health Dashboard
+  - name: vulnerabilities
+    description: Vulnerabilities and VEX
+  - name: licenses
+    description: License Compliance
+  - name: risk
+    description: Supply Chain Risk Score
+  - name: provenance
+    description: Provenance and Attestation
+  - name: diff
+    description: SBOM Diff
+  - name: readiness
+    description: 2026 Readiness Checklist
+  - name: dashboard
+    description: Global Dashboard Summary
+
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /dashboard:
+    get:
+      operationId: getDashboard
+      tags: [dashboard]
+      summary: Global dashboard summary stats
+      responses:
+        "200":
+          description: Dashboard summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardSummary"
+
+  /analyses:
+    get:
+      operationId: listAnalyses
+      tags: [analyses]
+      summary: List recent repository analyses
+      responses:
+        "200":
+          description: List of analyses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Analysis"
+    post:
+      operationId: createAnalysis
+      tags: [analyses]
+      summary: Trigger a new repository analysis
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAnalysisBody"
+      responses:
+        "201":
+          description: Analysis created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Analysis"
+
+  /analyses/{id}:
+    get:
+      operationId: getAnalysis
+      tags: [analyses]
+      summary: Get a specific analysis
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Analysis detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnalysisDetail"
+
+  /analyses/{id}/sbom:
+    get:
+      operationId: getSbomSummary
+      tags: [sbom]
+      summary: SBOM health summary for an analysis
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: SBOM summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SbomSummary"
+
+  /analyses/{id}/vulnerabilities:
+    get:
+      operationId: getVulnerabilities
+      tags: [vulnerabilities]
+      summary: Vulnerability list with VEX status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Vulnerability list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Vulnerability"
+
+  /analyses/{id}/vex:
+    get:
+      operationId: listVexStatements
+      tags: [vulnerabilities]
+      summary: List VEX statements for an analysis
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: VEX statements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VexStatement"
+    post:
+      operationId: createVexStatement
+      tags: [vulnerabilities]
+      summary: Generate a new VEX statement
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateVexBody"
+      responses:
+        "201":
+          description: VEX statement created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VexStatement"
+
+  /analyses/{id}/licenses:
+    get:
+      operationId: getLicenseReport
+      tags: [licenses]
+      summary: License compliance report
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: License report
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LicenseReport"
+
+  /analyses/{id}/license-tree:
+    get:
+      operationId: getLicenseTree
+      tags: [licenses]
+      summary: Dependency license inheritance tree
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: License tree
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LicenseTreeNode"
+
+  /analyses/{id}/risk:
+    get:
+      operationId: getRiskScore
+      tags: [risk]
+      summary: Supply chain risk score breakdown
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Risk score
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RiskScore"
+
+  /analyses/{id}/provenance:
+    get:
+      operationId: getProvenance
+      tags: [provenance]
+      summary: Provenance and attestation status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Provenance status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProvenanceStatus"
+
+  /analyses/{id}/readiness:
+    get:
+      operationId: getReadinessChecklist
+      tags: [readiness]
+      summary: 2026 SBOM mandate readiness checklist
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Readiness checklist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReadinessReport"
+
+  /diff:
+    post:
+      operationId: createDiff
+      tags: [diff]
+      summary: Diff two analyses (SBOM comparison)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDiffBody"
+      responses:
+        "200":
+          description: Diff result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SbomDiff"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required: [status]
+
+    DashboardSummary:
+      type: object
+      properties:
+        totalAnalyses:
+          type: integer
+        totalComponents:
+          type: integer
+        totalVulnerabilities:
+          type: integer
+        criticalVulnerabilities:
+          type: integer
+        licenseConflicts:
+          type: integer
+        averageRiskScore:
+          type: number
+        recentAnalyses:
+          type: array
+          items:
+            $ref: "#/components/schemas/Analysis"
+        topRiskyRepos:
+          type: array
+          items:
+            type: object
+            properties:
+              repo:
+                type: string
+              score:
+                type: number
+              criticalCount:
+                type: integer
+            required: [repo, score, criticalCount]
+      required:
+        - totalAnalyses
+        - totalComponents
+        - totalVulnerabilities
+        - criticalVulnerabilities
+        - licenseConflicts
+        - averageRiskScore
+        - recentAnalyses
+        - topRiskyRepos
+
+    Analysis:
+      type: object
+      properties:
+        id:
+          type: string
+        repo:
+          type: string
+        version:
+          type: string
+        commitSha:
+          type: string
+        status:
+          type: string
+          enum: [pending, running, complete, failed]
+        riskScore:
+          type: number
+        criticalCount:
+          type: integer
+        highCount:
+          type: integer
+        componentCount:
+          type: integer
+        licenseConflicts:
+          type: integer
+        scannedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - repo
+        - status
+        - riskScore
+        - criticalCount
+        - highCount
+        - componentCount
+        - licenseConflicts
+        - scannedAt
+        - createdAt
+
+    AnalysisDetail:
+      allOf:
+        - $ref: "#/components/schemas/Analysis"
+        - type: object
+          properties:
+            slsaLevel:
+              type: integer
+            provenanceVerified:
+              type: boolean
+            sbomFormat:
+              type: string
+            sbomVersion:
+              type: string
+
+    CreateAnalysisBody:
+      type: object
+      properties:
+        repoUrl:
+          type: string
+        branch:
+          type: string
+      required: [repoUrl]
+
+    SbomSummary:
+      type: object
+      properties:
+        analysisId:
+          type: string
+        totalComponents:
+          type: integer
+        directDependencies:
+          type: integer
+        transitiveDependencies:
+          type: integer
+        staleComponents:
+          type: integer
+        uniqueLicenses:
+          type: integer
+        format:
+          type: string
+        formatVersion:
+          type: string
+        components:
+          type: array
+          items:
+            $ref: "#/components/schemas/Component"
+      required:
+        - analysisId
+        - totalComponents
+        - directDependencies
+        - transitiveDependencies
+        - staleComponents
+        - uniqueLicenses
+        - format
+        - formatVersion
+        - components
+
+    Component:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        version:
+          type: string
+        license:
+          type: string
+        isDirect:
+          type: boolean
+        isStale:
+          type: boolean
+        publishedAt:
+          type: string
+          format: date-time
+        latestVersion:
+          type: string
+        vulnerabilityCount:
+          type: integer
+      required:
+        - id
+        - name
+        - version
+        - license
+        - isDirect
+        - isStale
+        - vulnerabilityCount
+
+    Vulnerability:
+      type: object
+      properties:
+        id:
+          type: string
+        cveId:
+          type: string
+        severity:
+          type: string
+          enum: [CRITICAL, HIGH, MEDIUM, LOW, INFO]
+        cvssScore:
+          type: number
+        packageName:
+          type: string
+        packageVersion:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        vexStatus:
+          type: string
+          enum: [not_affected, affected, fixed, under_investigation]
+        fixedIn:
+          type: string
+        publishedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - cveId
+        - severity
+        - cvssScore
+        - packageName
+        - packageVersion
+        - title
+        - vexStatus
+
+    VexStatement:
+      type: object
+      properties:
+        id:
+          type: string
+        analysisId:
+          type: string
+        cveId:
+          type: string
+        status:
+          type: string
+          enum: [not_affected, affected, fixed, under_investigation]
+        justification:
+          type: string
+        impactStatement:
+          type: string
+        actionStatement:
+          type: string
+        author:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - analysisId
+        - cveId
+        - status
+        - createdAt
+
+    CreateVexBody:
+      type: object
+      properties:
+        cveId:
+          type: string
+        status:
+          type: string
+          enum: [not_affected, affected, fixed, under_investigation]
+        justification:
+          type: string
+        impactStatement:
+          type: string
+        actionStatement:
+          type: string
+      required: [cveId, status]
+
+    LicenseReport:
+      type: object
+      properties:
+        analysisId:
+          type: string
+        distribution:
+          type: array
+          items:
+            type: object
+            properties:
+              license:
+                type: string
+              count:
+                type: integer
+              percentage:
+                type: number
+              category:
+                type: string
+                enum: [permissive, weak_copyleft, strong_copyleft, unknown]
+            required: [license, count, percentage, category]
+        conflicts:
+          type: array
+          items:
+            $ref: "#/components/schemas/LicenseConflict"
+        compatibility:
+          type: string
+          enum: [clean, warnings, conflicts]
+      required: [analysisId, distribution, conflicts, compatibility]
+
+    LicenseConflict:
+      type: object
+      properties:
+        id:
+          type: string
+        packageName:
+          type: string
+        packageVersion:
+          type: string
+        license:
+          type: string
+        conflictType:
+          type: string
+        severity:
+          type: string
+          enum: [error, warning, info]
+        description:
+          type: string
+      required: [id, packageName, license, conflictType, severity, description]
+
+    LicenseTreeNode:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        license:
+          type: string
+        licenseCategory:
+          type: string
+          enum: [permissive, weak_copyleft, strong_copyleft, unknown]
+        hasConflict:
+          type: boolean
+        children:
+          type: array
+          items:
+            $ref: "#/components/schemas/LicenseTreeNode"
+      required: [name, version, license, licenseCategory, hasConflict]
+
+    RiskScore:
+      type: object
+      properties:
+        analysisId:
+          type: string
+        overallScore:
+          type: number
+        grade:
+          type: string
+          enum: [A, B, C, D, F]
+        dimensions:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              score:
+                type: number
+              weight:
+                type: number
+              status:
+                type: string
+                enum: [good, warning, critical]
+              detail:
+                type: string
+            required: [name, score, weight, status, detail]
+        slsaLevel:
+          type: integer
+        recommendations:
+          type: array
+          items:
+            type: string
+      required:
+        - analysisId
+        - overallScore
+        - grade
+        - dimensions
+        - slsaLevel
+        - recommendations
+
+    ProvenanceStatus:
+      type: object
+      properties:
+        analysisId:
+          type: string
+        signed:
+          type: boolean
+        signingTool:
+          type: string
+        attestations:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              verified:
+                type: boolean
+              detail:
+                type: string
+            required: [type, verified, detail]
+        slsaLevel:
+          type: integer
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              step:
+                type: string
+              status:
+                type: string
+                enum: [complete, incomplete, not_started]
+              guidance:
+                type: string
+            required: [step, status, guidance]
+      required:
+        - analysisId
+        - signed
+        - attestations
+        - slsaLevel
+        - steps
+
+    ReadinessReport:
+      type: object
+      properties:
+        analysisId:
+          type: string
+        overallReadiness:
+          type: number
+        mandateDate:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReadinessItem"
+        categories:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              score:
+                type: number
+              itemCount:
+                type: integer
+              passCount:
+                type: integer
+            required: [name, score, itemCount, passCount]
+      required:
+        - analysisId
+        - overallReadiness
+        - mandateDate
+        - items
+        - categories
+
+    ReadinessItem:
+      type: object
+      properties:
+        id:
+          type: string
+        category:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [pass, fail, warning, not_applicable]
+        priority:
+          type: string
+          enum: [critical, high, medium, low]
+        guidance:
+          type: string
+        referenceUrl:
+          type: string
+      required:
+        - id
+        - category
+        - title
+        - description
+        - status
+        - priority
+        - guidance
+
+    CreateDiffBody:
+      type: object
+      properties:
+        baseAnalysisId:
+          type: string
+        headAnalysisId:
+          type: string
+      required: [baseAnalysisId, headAnalysisId]
+
+    SbomDiff:
+      type: object
+      properties:
+        baseAnalysisId:
+          type: string
+        headAnalysisId:
+          type: string
+        baseRepo:
+          type: string
+        headRepo:
+          type: string
+        added:
+          type: array
+          items:
+            $ref: "#/components/schemas/Component"
+        removed:
+          type: array
+          items:
+            $ref: "#/components/schemas/Component"
+        updated:
+          type: array
+          items:
+            type: object
+            properties:
+              component:
+                $ref: "#/components/schemas/Component"
+              oldVersion:
+                type: string
+              newVulnerabilities:
+                type: integer
+              removedVulnerabilities:
+                type: integer
+            required: [component, oldVersion, newVulnerabilities, removedVulnerabilities]
+        newVulnerabilities:
+          type: array
+          items:
+            $ref: "#/components/schemas/Vulnerability"
+        resolvedVulnerabilities:
+          type: array
+          items:
+            $ref: "#/components/schemas/Vulnerability"
+        riskDelta:
+          type: number
+      required:
+        - baseAnalysisId
+        - headAnalysisId
+        - added
+        - removed
+        - updated
+        - newVulnerabilities
+        - resolvedVulnerabilities
+        - riskDelta

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 490" width="760" height="490">
+  <rect width="760" height="490" fill="#fafafa" rx="6"/>
+
+  <defs>
+    <marker id="arr-ok" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0 0, 8 4, 0 8" fill="#22aa55"/>
+    </marker>
+    <marker id="arr-conflict" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0 0, 8 4, 0 8" fill="#cc3333"/>
+    </marker>
+  </defs>
+
+  <text x="380" y="22" font-size="13" font-family="Helvetica,Arial,sans-serif"
+    fill="#222" text-anchor="middle" font-weight="bold">License Conflict Propagation DAG</text>
+  <text x="380" y="38" font-size="9.5" font-family="Helvetica,Arial,sans-serif"
+    fill="#888" text-anchor="middle">GPL-3.0 at depth 2 propagates an INCOMPATIBLE conflict to the MIT-licensed root</text>
+
+  <!-- Edges drawn first so nodes sit on top -->
+  <path d="M 380 103 C 380 137.5 120 137.5 120 172"
+    fill="none" stroke="#22aa55" stroke-width="1.8"  marker-end="url(#arr-ok)"/>
+  <path d="M 380 103 C 380 137.5 380 137.5 380 172"
+    fill="none" stroke="#22aa55" stroke-width="1.8"  marker-end="url(#arr-ok)"/>
+  <path d="M 380 103 C 380 137.5 635 137.5 635 172"
+    fill="none" stroke="#22aa55" stroke-width="1.8"  marker-end="url(#arr-ok)"/>
+  <path d="M 120 218 C 120 255 60 255 60 292"
+    fill="none" stroke="#22aa55" stroke-width="1.8"  marker-end="url(#arr-ok)"/>
+  <path d="M 380 218 C 380 255 245 255 245 292"
+    fill="none" stroke="#22aa55" stroke-width="1.8"  marker-end="url(#arr-ok)"/>
+  <path d="M 380 218 C 380 255 420 255 420 292"
+    fill="none" stroke="#22aa55" stroke-width="1.8"  marker-end="url(#arr-ok)"/>
+  <path d="M 635 218 C 635 255 635 255 635 292"
+    fill="none" stroke="#cc3333" stroke-width="2.5" stroke-dasharray="7 4" marker-end="url(#arr-conflict)"/>
+  <path d="M 245 338 C 245 365 150 365 150 392"
+    fill="none" stroke="#22aa55" stroke-width="1.8"  marker-end="url(#arr-ok)"/>
+  <path d="M 420 338 C 420 365 340 365 340 392"
+    fill="none" stroke="#22aa55" stroke-width="1.8"  marker-end="url(#arr-ok)"/>
+  <path d="M 635 338 C 635 365 635 365 635 392"
+    fill="none" stroke="#cc3333" stroke-width="2.5" stroke-dasharray="7 4" marker-end="url(#arr-conflict)"/>
+
+  <!-- Nodes -->
+  
+  <g>
+    <rect x="320" y="57" width="120" height="46" rx="5"
+      fill="#eef4ff"
+      stroke="#1a4a8a" stroke-width="1.5"/>
+    <text x="380" y="73" font-size="9" font-family="Helvetica,Arial,sans-serif"
+      fill="#222" text-anchor="middle" font-weight="bold">my-project</text>
+    <rect x="342" y="85" width="76" height="14" rx="2" fill="#1a4a8a"/>
+    <text x="380" y="96" font-size="8" font-family="Helvetica,Arial,sans-serif"
+      fill="white" text-anchor="middle" font-weight="bold">MIT</text>
+  </g>
+  <g>
+    <rect x="60" y="172" width="120" height="46" rx="5"
+      fill="#eef4ff"
+      stroke="#1a4a8a" stroke-width="1.5"/>
+    <text x="120" y="188" font-size="9" font-family="Helvetica,Arial,sans-serif"
+      fill="#222" text-anchor="middle" font-weight="bold">react@18.3.1</text>
+    <rect x="82" y="200" width="76" height="14" rx="2" fill="#1a4a8a"/>
+    <text x="120" y="211" font-size="8" font-family="Helvetica,Arial,sans-serif"
+      fill="white" text-anchor="middle" font-weight="bold">MIT</text>
+  </g>
+  <g>
+    <rect x="320" y="172" width="120" height="46" rx="5"
+      fill="#eef4ff"
+      stroke="#1a4a8a" stroke-width="1.5"/>
+    <text x="380" y="188" font-size="9" font-family="Helvetica,Arial,sans-serif"
+      fill="#222" text-anchor="middle" font-weight="bold">express@4.18</text>
+    <rect x="342" y="200" width="76" height="14" rx="2" fill="#1a4a8a"/>
+    <text x="380" y="211" font-size="8" font-family="Helvetica,Arial,sans-serif"
+      fill="white" text-anchor="middle" font-weight="bold">MIT</text>
+  </g>
+  <g>
+    <rect x="575" y="172" width="120" height="46" rx="5"
+      fill="#eef4ff"
+      stroke="#1a4a8a" stroke-width="1.5"/>
+    <text x="635" y="188" font-size="9" font-family="Helvetica,Arial,sans-serif"
+      fill="#222" text-anchor="middle" font-weight="bold">lodash@4.17</text>
+    <rect x="597" y="200" width="76" height="14" rx="2" fill="#1a4a8a"/>
+    <text x="635" y="211" font-size="8" font-family="Helvetica,Arial,sans-serif"
+      fill="white" text-anchor="middle" font-weight="bold">MIT</text>
+  </g>
+  <g>
+    <rect x="0" y="292" width="120" height="46" rx="5"
+      fill="#eef4ff"
+      stroke="#1a4a8a" stroke-width="1.5"/>
+    <text x="60" y="308" font-size="9" font-family="Helvetica,Arial,sans-serif"
+      fill="#222" text-anchor="middle" font-weight="bold">scheduler@0.23</text>
+    <rect x="22" y="320" width="76" height="14" rx="2" fill="#1a4a8a"/>
+    <text x="60" y="331" font-size="8" font-family="Helvetica,Arial,sans-serif"
+      fill="white" text-anchor="middle" font-weight="bold">MIT</text>
+  </g>
+  <g>
+    <rect x="185" y="292" width="120" height="46" rx="5"
+      fill="#eef4ff"
+      stroke="#555599" stroke-width="1.5"/>
+    <text x="245" y="308" font-size="9" font-family="Helvetica,Arial,sans-serif"
+      fill="#222" text-anchor="middle" font-weight="bold">qs@6.11</text>
+    <rect x="207" y="320" width="76" height="14" rx="2" fill="#555599"/>
+    <text x="245" y="331" font-size="8" font-family="Helvetica,Arial,sans-serif"
+      fill="white" text-anchor="middle" font-weight="bold">BSD-3</text>
+  </g>
+  <g>
+    <rect x="360" y="292" width="120" height="46" rx="5"
+      fill="#eef4ff"
+      stroke="#1a4a8a" stroke-width="1.5"/>
+    <text x="420" y="308" font-size="9" font-family="Helvetica,Arial,sans-serif"
+      fill="#222" text-anchor="middle" font-weight="bold">helmet@7.0</text>
+    <rect x="382" y="320" width="76" height="14" rx="2" fill="#1a4a8a"/>
+    <text x="420" y="331" font-size="8" font-family="Helvetica,Arial,sans-serif"
+      fill="white" text-anchor="middle" font-weight="bold">MIT</text>
+  </g>
+  <g>
+    <rect x="575" y="292" width="120" height="46" rx="5"
+      fill="#fff0f0"
+      stroke="#cc3333" stroke-width="2.5"/>
+    <text x="635" y="308" font-size="9" font-family="Helvetica,Arial,sans-serif"
+      fill="#222" text-anchor="middle" font-weight="bold">some-util@2.1</text>
+    <rect x="597" y="320" width="76" height="14" rx="2" fill="#cc3333"/>
+    <text x="635" y="331" font-size="8" font-family="Helvetica,Arial,sans-serif"
+      fill="white" text-anchor="middle" font-weight="bold">GPL-3.0</text>
+  </g>
+  <g>
+    <rect x="90" y="392" width="120" height="46" rx="5"
+      fill="#eef4ff"
+      stroke="#1a4a8a" stroke-width="1.5"/>
+    <text x="150" y="408" font-size="9" font-family="Helvetica,Arial,sans-serif"
+      fill="#222" text-anchor="middle" font-weight="bold">ms@2.1.3</text>
+    <rect x="112" y="420" width="76" height="14" rx="2" fill="#1a4a8a"/>
+    <text x="150" y="431" font-size="8" font-family="Helvetica,Arial,sans-serif"
+      fill="white" text-anchor="middle" font-weight="bold">MIT</text>
+  </g>
+  <g>
+    <rect x="280" y="392" width="120" height="46" rx="5"
+      fill="#eef4ff"
+      stroke="#1a4a8a" stroke-width="1.5"/>
+    <text x="340" y="408" font-size="9" font-family="Helvetica,Arial,sans-serif"
+      fill="#222" text-anchor="middle" font-weight="bold">path-parse@1.0</text>
+    <rect x="302" y="420" width="76" height="14" rx="2" fill="#1a4a8a"/>
+    <text x="340" y="431" font-size="8" font-family="Helvetica,Arial,sans-serif"
+      fill="white" text-anchor="middle" font-weight="bold">MIT</text>
+  </g>
+  <g>
+    <rect x="575" y="392" width="120" height="46" rx="5"
+      fill="#fff0f0"
+      stroke="#cc3333" stroke-width="2.5"/>
+    <text x="635" y="408" font-size="9" font-family="Helvetica,Arial,sans-serif"
+      fill="#222" text-anchor="middle" font-weight="bold">gpl-helper@1.0</text>
+    <rect x="597" y="420" width="76" height="14" rx="2" fill="#cc3333"/>
+    <text x="635" y="431" font-size="8" font-family="Helvetica,Arial,sans-serif"
+      fill="white" text-anchor="middle" font-weight="bold">GPL-3.0</text>
+  </g>
+
+  <!-- Conflict callout — sits in the gap between express/helmet columns and lodash/gpl-dep column.
+       express node: x=320-440, y=172-218.  lodash node: x=575-695, y=172-218.
+       helmet node:  x=360-480, y=292-338.  gpl-dep node: x=575-695, y=292-338.
+       Callout: x=445-615, y=223-281  → clears all nodes. -->
+  <rect x="445" y="223" width="170" height="58" rx="5"
+    fill="#fff4f4" stroke="#cc3333" stroke-width="2"/>
+  <text x="530" y="242" font-size="9" font-family="Helvetica,Arial,sans-serif"
+    fill="#cc3333" text-anchor="middle" font-weight="bold">⚠ LICENSE CONFLICT</text>
+  <text x="530" y="257" font-size="8" font-family="Helvetica,Arial,sans-serif"
+    fill="#aa3333" text-anchor="middle">MIT root ↔ GPL-3.0 dep (depth 2)</text>
+  <text x="530" y="270" font-size="8" font-family="Helvetica,Arial,sans-serif"
+    fill="#aa3333" text-anchor="middle">Distribution of root blocked</text>
+  <!-- dashed pointer from callout right edge to lodash→gpl-dep edge midpoint -->
+  <line x1="615" y1="252" x2="630" y2="255" stroke="#cc3333" stroke-width="1.2"
+    stroke-dasharray="3 2" marker-end="url(#arr-conflict)"/>
+
+  <!-- Legend — second entry pushed to x=200 to clear "COMPATIBLE dependency" text (ends ~x=179) -->
+  <rect x="12" y="448" width="380" height="32" rx="4" fill="white" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="24" y1="464" x2="58" y2="464" stroke="#22aa55" stroke-width="2" marker-end="url(#arr-ok)"/>
+  <text x="66" y="468" font-size="9" font-family="Helvetica,Arial,sans-serif" fill="#333">COMPATIBLE dependency</text>
+  <line x1="200" y1="464" x2="234" y2="464" stroke="#cc3333" stroke-width="2.5"
+    stroke-dasharray="6 3" marker-end="url(#arr-conflict)"/>
+  <text x="242" y="468" font-size="9" font-family="Helvetica,Arial,sans-serif" fill="#333">INCOMPATIBLE (conflict)</text>
+</svg>
